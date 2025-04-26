@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页朗读助手 - 特斯拉浏览器专用</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <div class="logo">网页朗读助手</div>
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="输入网址或搜索内容...">
+                <button class="search-button" id="searchButton">搜索</button>
+            </div>
+            <div class="engine-options">
+                <label class="engine-option">
+                    <input type="radio" name="engine" value="direct" checked> 直接访问
+                </label>
+                <label class="engine-option">
+                    <input type="radio" name="engine" value="bing"> 必应搜索
+                </label>
+                <label class="engine-option">
+                    <input type="radio" name="engine" value="baidu"> 百度搜索
+                </label>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">正在加载内容，请稍候...</div>
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="content-container" id="contentContainer">
+            <div class="content-header">
+                <div class="page-title" id="pageTitle">页面标题</div>
+                <div class="content-controls">
+                    <button class="view-mode-toggle" id="viewModeToggle">仅文字模式</button>
+                    <button class="play-button" id="playButton">🔊 朗读内容</button>
+                    <button class="area-selection-button" id="areaSelectionButton" title="通过鼠标或触摸屏选择要朗读的具体区域">选择朗读区域</button>
+                    <select class="speed-selector" id="speedSelector">
+                        <option value="0.5">0.5x 速度</option>
+                        <option value="0.8">0.8x 速度</option>
+                        <option value="1" selected>1.0x 速度</option>
+                        <option value="1.2">1.2x 速度</option>
+                        <option value="1.5">1.5x 速度</option>
+                        <option value="2">2.0x 速度</option>
+                        <option value="2.5">2.5x 速度</option>
+                        <option value="3">3.0x 速度</option>
+                    </select>
+                </div>
+            </div>
+            <div class="selection-help-tip" style="display:none; text-align:center; padding:10px; background-color:#f8f8f8; border-radius:8px; margin:10px 0; font-size:0.9rem;">
+                <p><strong>区域选择模式：</strong>移动鼠标或手指在网页上悬停，黄色框会显示当前区域，点击或触摸选择要朗读的内容。</p>
+            </div>
+            <div class="original-view" id="originalView"></div>
+            <div class="text-view" id="textView"></div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html> 

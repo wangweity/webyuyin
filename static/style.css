@@ -1,0 +1,469 @@
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #03A9F4;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --card-color: #ffffff;
+    --border-color: #e0e0e0;
+    --highlight-color: #e3f2fd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.logo {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.search-box {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-input {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.search-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.engine-options {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.engine-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.content-container {
+    display: none;
+    margin-top: 20px;
+    background-color: var(--card-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.content-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.page-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.content-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.view-mode-toggle, 
+.play-button,
+.speed-selector {
+    padding: 8px 15px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.view-mode-toggle:hover, 
+.play-button:hover,
+.speed-selector:hover {
+    background-color: var(--highlight-color);
+}
+
+.speed-selector {
+    outline: none;
+}
+
+.original-view, .text-view {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.text-view {
+    display: none;
+}
+
+.block {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.block:hover {
+    background-color: var(--highlight-color);
+}
+
+.active-block {
+    background-color: var(--highlight-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+.search-results {
+    padding: 20px;
+}
+
+.search-result {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.search-result:hover {
+    background-color: var(--highlight-color);
+}
+
+.result-title {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.result-url {
+    color: green;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-snippet {
+    font-size: 0.9rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    display: none;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-input {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+    
+    .search-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .content-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.pagination-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.page-info {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Selection mode styles */
+.selection-mode .content-container {
+    position: relative;
+}
+
+/* Enhanced selection mode styles */
+.selection-overlay {
+    position: absolute;
+    border: 3px solid #FFEB3B;
+    background-color: rgba(255, 235, 59, 0.15);
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease-out;
+    border-radius: 4px;
+}
+
+.area-selection-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.area-selection-button:hover {
+    background-color: var(--highlight-color);
+}
+
+.area-selection-button.active {
+    background-color: #FFEB3B;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.area-selection-button.active:before {
+    content: "✓ ";
+}
+
+.message-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(33, 33, 33, 0.85);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 2000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+    max-width: 80%;
+    text-align: center;
+    animation: fade-in 0.3s ease-out;
+}
+
+/* Search results container */
+.search-results-container {
+    margin-bottom: 20px;
+}
+
+/* Make sure links in the proxy content don't navigate away */
+.original-view a, .text-view a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* For touch devices */
+    .selection-overlay {
+        border-width: 4px;
+        box-shadow: 0 0 15px rgba(255, 235, 59, 0.6);
+    }
+    
+    .area-selection-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .message-overlay {
+        padding: 20px 25px;
+        font-size: 1.2rem;
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Search results styling enhancements */
+#search-results-wrapper {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 百度搜索结果样式修复 */
+#content_left {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+}
+
+.c-container, .result {
+    width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 15px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s !important;
+}
+
+.c-container:hover, .result:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    background-color: #f9f9f9 !important;
+}
+
+.c-title a, h3.t a {
+    font-size: 18px !important;
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+}
+
+/* 必应搜索结果样式修复 */
+#b_content {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.b_algo {
+    width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 15px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    transition: all 0.2s !important;
+}
+
+.b_algo:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    background-color: #f9f9f9 !important;
+}
+
+.b_algo h2 a {
+    font-size: 18px !important;
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+}
+
+/* 隐藏不必要的UI元素 */
+.b_header, .b_footer, #b_header, #b_footer, 
+#head, #foot, .s_form, .s_tab, 
+.sam_newgrid, .c-icon-bear-p {
+    display: none !important;
+}
+
+/* 修复图片 */
+.search-results img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* 优化内联视频 */
+.search-results video {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* 确保分页在所有结果下方显示 */
+.pagination {
+    margin-top: 20px !important;
+    padding-top: 15px !important;
+    border-top: 1px solid var(--border-color) !important;
+} 
